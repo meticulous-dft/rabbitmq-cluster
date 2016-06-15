@@ -6,13 +6,13 @@ set -m
 chown -R rabbitmq:rabbitmq /var/lib/rabbitmq
 
 if [ -z "$CLUSTER_WITH" ] ; then
-    rabbitmq-plugins enable --offline rabbitmq_management rabbitmq_mqtt
+    rabbitmq-plugins enable --offline rabbitmq_management rabbitmq_mqtt rabbitmq_web_mqtt
     /usr/sbin/rabbitmq-server
 else
     if [ -f /.CLUSTERED ] ; then
     /usr/sbin/rabbitmq-server
     else
-        rabbitmq-plugins enable --offline rabbitmq_management_agent rabbitmq_mqtt
+        rabbitmq-plugins enable --offline rabbitmq_management_agent rabbitmq_mqtt rabbitmq_web_mqtt
         touch /.CLUSTERED
         /usr/sbin/rabbitmq-server &
         sleep $SLEEP
