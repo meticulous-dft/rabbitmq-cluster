@@ -44,6 +44,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # /usr/sbin/rabbitmq-server has some irritating behavior, and only exists to "su - rabbitmq /usr/lib/rabbitmq/bin/rabbitmq-server ..."
 ENV PATH /usr/lib/rabbitmq/bin:$PATH
 
+# plugins
+ADD plugins/*.ez /usr/lib/rabbitmq/lib/rabbitmq_server-3.6.2/plugins/
+
 # Configuration files
 ADD etc/security/limits.conf /etc/security/limits.conf
 ADD etc/sysctl.conf /etc/sysctl.conf
